@@ -347,7 +347,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {c.different.items.map((item, i) => (
-              <div key={i} className={`flex gap-4 p-6 rounded-2xl bg-blue-50 border border-blue-100 ${isRtl ? 'flex-row-reverse text-right' : 'text-left'}`}>
+              <div key={i} className={`flex gap-4 p-6 rounded-2xl bg-blue-50 border border-blue-100 ${isRtl ? 'text-right' : 'text-left'}`}>
                 <div className="shrink-0 mt-0.5 text-blue-700">
                   <Icon path={item.icon} className="h-6 w-6" />
                 </div>
@@ -368,7 +368,7 @@ export default function AboutPage() {
       {/* ── Ethical academic support note ───────────────────────────────────── */}
       <section className="bg-gray-50 py-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex gap-5 bg-white border border-blue-100 rounded-2xl p-7 shadow-sm ${isRtl ? 'flex-row-reverse text-right' : 'text-left'}`}>
+          <div className={`flex gap-5 bg-white border border-blue-100 rounded-2xl p-7 shadow-sm ${isRtl ? 'text-right' : 'text-left'}`}>
             <div className="shrink-0 mt-1 text-blue-600">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />

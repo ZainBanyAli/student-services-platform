@@ -308,7 +308,7 @@ export default function HomePage() {
             {c.whyUs.items.map((item, i) => (
               <div
                 key={i}
-                className={`flex gap-4 p-6 rounded-2xl bg-blue-50 border border-blue-100 ${isRtl ? 'flex-row-reverse text-right' : 'text-left'}`}
+                className={`flex gap-4 p-6 rounded-2xl bg-blue-50 border border-blue-100 ${isRtl ? 'text-right' : 'text-left'}`}
               >
                 <div className="text-blue-600 mt-0.5 shrink-0">
                   <CheckIcon />
@@ -354,7 +354,7 @@ export default function HomePage() {
           <p className={`text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6 ${isRtl ? 'text-right' : 'text-center'}`}>
             {c.trust.heading}
           </p>
-          <div className={`flex flex-wrap items-center justify-center gap-x-8 gap-y-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             {c.trust.items.map((item, i) => (
               <div key={i} className="flex items-center gap-3">
                 {i > 0 && <span className="hidden sm:block w-px h-5 bg-gray-200" aria-hidden="true" />}

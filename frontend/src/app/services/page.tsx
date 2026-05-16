@@ -284,7 +284,7 @@ export default function ServicesPage() {
         aria-label={lang === 'ar' ? 'تنقل بين الفئات' : 'Category navigation'}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex gap-2 overflow-x-auto py-3 ${isRtl ? 'flex-row-reverse' : ''}`}>
+          <div className="flex gap-2 overflow-x-auto py-3">
             {categories.map((cat) => (
               <a
                 key={cat.slug}
@@ -370,7 +370,7 @@ export default function ServicesPage() {
       {/* ── Bottom CTA strip ────────────────────────────────────────────────── */}
       <section className="bg-blue-950 text-white py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex flex-wrap items-center justify-center gap-x-3 gap-y-2 ${isRtl ? 'flex-row-reverse' : ''}`}>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
             <span className={`text-blue-200 ${isRtl ? 'text-base' : 'text-sm'}`}>{p.contactNote}</span>
             <a
               href="https://wa.me/962797930338"

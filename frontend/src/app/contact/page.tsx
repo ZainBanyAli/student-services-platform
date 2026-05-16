@@ -268,7 +268,7 @@ export default function ContactPage() {
               <p className={`text-green-700 mb-4 flex-1 ${isRtl ? 'text-sm leading-7' : 'text-sm leading-relaxed'}`}>{c.cards.whatsapp.desc}</p>
               <div className="text-sm font-medium text-green-800 mb-1">{WHATSAPP_NUMBER}</div>
               <span className="mt-3 text-sm font-semibold text-green-700 group-hover:text-green-900 transition-colors">
-                {c.cards.whatsapp.action} →
+                {c.cards.whatsapp.action} {isRtl ? '←' : '→'}
               </span>
             </a>
 
@@ -286,7 +286,7 @@ export default function ContactPage() {
               <p className={`text-blue-700 mb-4 flex-1 ${isRtl ? 'text-sm leading-7' : 'text-sm leading-relaxed'}`}>{c.cards.email.desc}</p>
               <div className="text-sm font-medium text-blue-800 mb-1 break-all">{EMAIL}</div>
               <span className="mt-3 text-sm font-semibold text-blue-700 group-hover:text-blue-900 transition-colors">
-                {c.cards.email.action} →
+                {c.cards.email.action} {isRtl ? '←' : '→'}
               </span>
             </a>
 
@@ -301,7 +301,7 @@ export default function ContactPage() {
               <h3 className="text-base font-bold text-blue-950 mb-2">{c.cards.form.title}</h3>
               <p className={`text-gray-500 mb-4 flex-1 ${isRtl ? 'text-sm leading-7' : 'text-sm leading-relaxed'}`}>{c.cards.form.desc}</p>
               <span className="mt-3 text-sm font-semibold text-blue-700 group-hover:text-blue-900 transition-colors">
-                {c.cards.form.action} →
+                {c.cards.form.action} {isRtl ? '←' : '→'}
               </span>
             </Link>
 
@@ -324,7 +324,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {c.before.items.map((item, i) => (
               <div key={i} className={`bg-white rounded-2xl p-6 border border-gray-100 shadow-sm ${isRtl ? 'text-right' : 'text-left'}`}>
-                <div className={`flex items-center gap-3 mb-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
+                <div className="flex items-center gap-3 mb-4">
                   <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center">
                     <Icon path={item.icon} className="h-5 w-5" />
                   </div>

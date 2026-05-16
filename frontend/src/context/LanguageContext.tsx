@@ -4,6 +4,8 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 type Lang = 'ar' | 'en';
 
+const year = new Date().getFullYear();
+
 const translations = {
   ar: {
     siteName: 'مكتب العياصرة للخدمات الطلابية',
@@ -17,7 +19,7 @@ const translations = {
     footer: {
       description:
         'نقدم دعماً أكاديمياً متخصصاً للطلاب في مراحل البكالوريوس والماجستير والدكتوراه.',
-      rights: '© 2025 مكتب العياصرة للخدمات الطلابية. جميع الحقوق محفوظة.',
+      rights: `© ${year} مكتب العياصرة للخدمات الطلابية. جميع الحقوق محفوظة.`,
       contact: 'تواصل معنا',
       links: 'روابط سريعة',
     },
@@ -35,7 +37,7 @@ const translations = {
     footer: {
       description:
         "Specialized academic support for undergraduate, master's, and PhD students.",
-      rights: '© 2025 Al-Ayasrah Academic Services. All rights reserved.',
+      rights: `© ${year} Al-Ayasrah Academic Services. All rights reserved.`,
       contact: 'Contact Us',
       links: 'Quick Links',
     },
