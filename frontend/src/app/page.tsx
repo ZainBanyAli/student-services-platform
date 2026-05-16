@@ -16,11 +16,13 @@ const homeContent = {
       ctaPrimary: 'اطلب خدمة',
       ctaSecondary: 'استعرض الخدمات',
       whatsapp: 'تواصل معنا عبر واتساب',
+      trustItems: ['٢١+ خدمة أكاديمية', 'عربي وإنجليزي', 'سرية تامة'],
     },
     services: {
       heading: 'خدماتنا الأكاديمية',
       sub: 'نقدم مجموعة متكاملة من خدمات الدعم الأكاديمي لمختلف المراحل الدراسية',
       cta: 'عرض جميع الخدمات',
+      viewService: 'عرض الخدمة',
     },
     whyUs: {
       heading: 'لماذا تختارنا؟',
@@ -63,11 +65,13 @@ const homeContent = {
       ctaPrimary: 'Request a Service',
       ctaSecondary: 'View Services',
       whatsapp: 'Contact us on WhatsApp',
+      trustItems: ['21+ Academic Services', 'Arabic & English', 'Full Confidentiality'],
     },
     services: {
       heading: 'Our Academic Services',
       sub: 'A comprehensive range of academic support services for students at every degree level',
       cta: 'View All Services',
+      viewService: 'View service',
     },
     whyUs: {
       heading: 'Why Choose Us?',
@@ -159,7 +163,7 @@ const serviceCategories = [
 
 function ServiceIcon({ path }: { path: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" d={path} />
     </svg>
   );
@@ -168,7 +172,7 @@ function ServiceIcon({ path }: { path: string }) {
 function CheckIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
     </svg>
   );
 }
@@ -183,7 +187,7 @@ function WhatsAppIcon() {
 
 function StarIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
     </svg>
   );
@@ -193,8 +197,9 @@ function StarIcon() {
 
 function SectionHeading({ heading, sub, light = false }: { heading: string; sub: string; light?: boolean }) {
   return (
-    <div className="text-center max-w-2xl mx-auto mb-12">
-      <h2 className={`text-3xl font-bold mb-3 ${light ? 'text-white' : 'text-blue-950'}`}>{heading}</h2>
+    <div className="text-center max-w-2xl mx-auto mb-14">
+      <div className={`inline-block w-10 h-1 rounded-full mb-5 ${light ? 'bg-blue-400' : 'bg-blue-600'}`} aria-hidden="true" />
+      <h2 className={`text-3xl sm:text-4xl font-bold mb-4 leading-tight ${light ? 'text-white' : 'text-blue-950'}`}>{heading}</h2>
       <p className={`text-base leading-relaxed ${light ? 'text-blue-200' : 'text-gray-500'}`}>{sub}</p>
     </div>
   );
@@ -211,47 +216,69 @@ export default function HomePage() {
     <div className={isRtl ? 'font-arabic' : 'font-sans'}>
 
       {/* ── Hero ────────────────────────────────────────────────────────────── */}
-      <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white overflow-hidden">
-        {/* Subtle decorative circles */}
+      <section className="relative bg-gradient-to-br from-slate-900 via-blue-950 to-blue-900 text-white overflow-hidden">
+
+        {/* Dot grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+          aria-hidden="true"
+        />
+
+        {/* Decorative blurred shapes */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute -top-24 -start-24 w-96 h-96 bg-white/5 rounded-full" />
-          <div className="absolute bottom-0 end-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3" />
+          <div className="absolute -top-40 -start-40 w-[560px] h-[560px] bg-blue-600/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 end-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute -bottom-20 start-1/4 w-72 h-72 bg-blue-400/10 rounded-full blur-2xl" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-36 text-center">
+
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-blue-100 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-blue-100 text-sm font-medium px-5 py-2 rounded-full mb-8 backdrop-blur-sm">
             <StarIcon />
             <span>{c.hero.badge}</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 max-w-4xl mx-auto">
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 max-w-4xl mx-auto ${isRtl ? 'leading-snug sm:leading-tight' : ''}`}>
             {c.hero.headline}
           </h1>
 
           {/* Sub */}
-          <p className="text-lg md:text-xl text-blue-200 leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className={`text-lg md:text-xl text-blue-200 max-w-2xl mx-auto mb-10 ${isRtl ? 'leading-8' : 'leading-relaxed'}`}>
             {c.hero.sub}
           </p>
 
           {/* CTA buttons */}
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 ${isRtl ? 'sm:flex-row-reverse' : ''}`}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <Link
               href="/request"
-              className="w-full sm:w-auto px-8 py-3.5 bg-white text-blue-950 font-semibold rounded-xl hover:bg-blue-50 transition-colors shadow-lg shadow-black/20 text-base"
+              className="w-full sm:w-auto px-9 py-4 bg-white text-blue-950 font-bold rounded-2xl hover:bg-blue-50 transition-all shadow-2xl shadow-black/30 text-base"
             >
               {c.hero.ctaPrimary}
             </Link>
             <Link
               href="/services"
-              className="w-full sm:w-auto px-8 py-3.5 border-2 border-white/60 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors text-base"
+              className="w-full sm:w-auto px-9 py-4 bg-white/10 border border-white/30 text-white font-semibold rounded-2xl hover:bg-white/20 transition-all backdrop-blur-sm text-base"
             >
               {c.hero.ctaSecondary}
             </Link>
           </div>
 
-          {/* WhatsApp highlight */}
+          {/* Trust indicators */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-8">
+            {c.hero.trustItems.map((item, i) => (
+              <div key={i} className="flex items-center gap-1.5 text-blue-200 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-blue-400 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* WhatsApp link */}
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -265,7 +292,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Services Preview ────────────────────────────────────────────────── */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-gray-50 py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading heading={c.services.heading} sub={c.services.sub} />
 
@@ -276,22 +303,26 @@ export default function HomePage() {
                 <Link
                   key={cat.slug}
                   href={`/services#${cat.slug}`}
-                  className={`group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all ${isRtl ? 'text-right' : 'text-left'}`}
+                  className={`group flex flex-col bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-200 transition-all duration-300 ${isRtl ? 'text-right' : 'text-left'}`}
                 >
-                  <div className="text-blue-700 mb-4 group-hover:text-blue-800 transition-colors">
+                  {/* Gradient icon square */}
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-700 to-blue-900 text-white flex items-center justify-center mb-4 group-hover:from-blue-600 group-hover:to-blue-800 transition-all duration-300 shrink-0">
                     <ServiceIcon path={cat.iconPath} />
                   </div>
-                  <h3 className="text-base font-bold text-blue-950 mb-2 leading-snug">{item.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                  <h3 className={`text-base font-bold text-blue-950 mb-2 group-hover:text-blue-700 transition-colors ${isRtl ? 'leading-relaxed' : 'leading-snug'}`}>{item.title}</h3>
+                  <p className={`text-sm text-gray-500 flex-1 ${isRtl ? 'leading-7' : 'leading-relaxed'}`}>{item.desc}</p>
+                  <p className="mt-4 text-xs font-semibold text-blue-500 group-hover:text-blue-700 transition-colors">
+                    {c.services.viewService} {isRtl ? '←' : '→'}
+                  </p>
                 </Link>
               );
             })}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-7 py-3 bg-blue-900 text-white font-semibold rounded-xl hover:bg-blue-800 transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-900 text-white font-semibold rounded-xl hover:bg-blue-800 transition-colors shadow-sm"
             >
               {c.services.cta}
             </Link>
@@ -300,22 +331,23 @@ export default function HomePage() {
       </section>
 
       {/* ── Why Choose Us ───────────────────────────────────────────────────── */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading heading={c.whyUs.heading} sub={c.whyUs.sub} />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {c.whyUs.items.map((item, i) => (
               <div
                 key={i}
-                className={`flex gap-4 p-6 rounded-2xl bg-blue-50 border border-blue-100 ${isRtl ? 'text-right' : 'text-left'}`}
+                className={`flex gap-4 p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all ${isRtl ? 'text-right' : 'text-left'}`}
               >
-                <div className="text-blue-600 mt-0.5 shrink-0">
+                {/* Icon in colored square */}
+                <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
                   <CheckIcon />
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-blue-950 mb-1">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <p className={`text-sm text-gray-600 ${isRtl ? 'leading-7' : 'leading-relaxed'}`}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -324,24 +356,24 @@ export default function HomePage() {
       </section>
 
       {/* ── How It Works ────────────────────────────────────────────────────── */}
-      <section className="bg-blue-950 py-20">
+      <section className="bg-blue-950 py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading heading={c.howItWorks.heading} sub={c.howItWorks.sub} light />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {c.howItWorks.steps.map((step, i) => (
-              <div key={i} className={`relative text-center ${isRtl ? 'font-arabic' : ''}`}>
-                {/* Connector line (hidden on last item) */}
+              <div key={i} className="relative text-center">
+                {/* Connector line between steps */}
                 {i < c.howItWorks.steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-7 start-1/2 w-full h-px bg-blue-700" aria-hidden="true" />
+                  <div className="hidden lg:block absolute top-8 start-1/2 w-full h-px bg-blue-800" aria-hidden="true" />
                 )}
-                <div className="relative z-10 flex justify-center mb-4">
-                  <span className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-700 border-2 border-blue-500 text-white text-xl font-bold">
-                    {step.num}
-                  </span>
+                <div className="relative z-10 flex justify-center mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-lg border border-blue-500/30">
+                    <span className="text-2xl font-bold text-white">{step.num}</span>
+                  </div>
                 </div>
                 <h3 className="text-base font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-sm text-blue-300 leading-relaxed">{step.desc}</p>
+                <p className={`text-sm text-blue-300 ${isRtl ? 'leading-7' : 'leading-relaxed'}`}>{step.desc}</p>
               </div>
             ))}
           </div>
@@ -354,16 +386,13 @@ export default function HomePage() {
           <p className={`text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6 ${isRtl ? 'text-right' : 'text-center'}`}>
             {c.trust.heading}
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {c.trust.items.map((item, i) => (
-              <div key={i} className="flex items-center gap-3">
-                {i > 0 && <span className="hidden sm:block w-px h-5 bg-gray-200" aria-hidden="true" />}
-                <span className="flex items-center gap-2 text-sm font-medium text-blue-900">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  {item}
-                </span>
+              <div key={i} className="flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-blue-600 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm font-medium text-blue-900">{item}</span>
               </div>
             ))}
           </div>
@@ -371,19 +400,33 @@ export default function HomePage() {
       </section>
 
       {/* ── Final CTA ───────────────────────────────────────────────────────── */}
-      <section className="bg-gray-50 py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-blue-950 mb-4 leading-tight">
+      <section className="relative bg-gradient-to-br from-slate-900 via-blue-950 to-blue-900 overflow-hidden py-28">
+
+        {/* Dot grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+          aria-hidden="true"
+        />
+
+        {/* Decorative shapes */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute -bottom-28 -end-28 w-[420px] h-[420px] bg-blue-600/20 rounded-full blur-3xl" />
+          <div className="absolute -top-20 start-0 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 ${isRtl ? 'leading-relaxed' : 'leading-tight'}`}>
             {c.cta.heading}
           </h2>
-          <p className="text-base text-gray-500 leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className={`text-blue-200 mb-12 max-w-xl mx-auto ${isRtl ? 'text-base leading-8' : 'text-base leading-relaxed'}`}>
             {c.cta.sub}
           </p>
 
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${isRtl ? 'sm:flex-row-reverse' : ''}`}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/request"
-              className="w-full sm:w-auto px-8 py-3.5 bg-blue-900 text-white font-semibold rounded-xl hover:bg-blue-800 transition-colors shadow-sm text-base"
+              className="w-full sm:w-auto px-9 py-4 bg-white text-blue-950 font-bold rounded-2xl hover:bg-blue-50 transition-all shadow-2xl shadow-black/30 text-base"
             >
               {c.cta.primary}
             </Link>
@@ -391,7 +434,7 @@ export default function HomePage() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-colors shadow-sm text-base"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-4 bg-green-500 hover:bg-green-400 text-white font-semibold rounded-2xl transition-all shadow-lg shadow-green-900/40 text-base"
             >
               <WhatsAppIcon />
               <span>{c.cta.whatsapp}</span>
