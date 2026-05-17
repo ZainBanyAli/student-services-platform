@@ -4,6 +4,7 @@ import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { submitServiceRequest, type ServiceRequestPayload } from '@/lib/submitRequest';
 
 const WHATSAPP_URL = 'https://wa.me/962797930338';
 
@@ -137,6 +138,8 @@ const ui = {
       other: 'أخرى',
     },
     submit: 'إرسال الطلب',
+    submitting: 'جارٍ الإرسال...',
+    submitError: 'حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.',
     required: 'حقل مطلوب',
     errors: {
       fullName: 'الاسم الكامل مطلوب',
@@ -204,6 +207,8 @@ const ui = {
       other: 'Other',
     },
     submit: 'Submit Request',
+    submitting: 'Submitting...',
+    submitError: 'Something went wrong. Please try again.',
     required: 'Required',
     errors: {
       fullName: 'Full name is required',
@@ -358,6 +363,8 @@ function RequestForm() {
   const [form, setForm] = useState<FormData>(emptyForm);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Pre-select service from ?service= query param
   useEffect(() => {
@@ -397,9 +404,19 @@ function RequestForm() {
     return Object.keys(newErrors).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (validate()) setSubmitted(true);
+    if (!validate()) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    const payload: ServiceRequestPayload = { ...form, lang };
+    const result = await submitServiceRequest(payload);
+    setSubmitting(false);
+    if (result.success) {
+      setSubmitted(true);
+    } else {
+      setSubmitError(t.submitError);
+    }
   }
 
   const availableServices = categories.find((c) => c.slug === form.category)?.services ?? [];
@@ -611,14 +628,20 @@ function RequestForm() {
       <div className={`pt-2 flex flex-col sm:flex-row items-start gap-4 ${isRtl ? 'sm:flex-row-reverse sm:items-end' : ''}`}>
         <button
           type="submit"
-          className="w-full sm:w-auto px-10 py-3.5 bg-blue-900 hover:bg-blue-800 text-white font-semibold rounded-xl transition-colors shadow-sm text-base"
+          disabled={submitting}
+          className="w-full sm:w-auto px-10 py-3.5 bg-blue-900 hover:bg-blue-800 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-colors shadow-sm text-base"
         >
-          {t.submit}
+          {submitting ? t.submitting : t.submit}
         </button>
         <p className={`text-xs text-gray-400 self-center ${isRtl ? 'text-right' : ''}`}>
           <span className="text-red-500">*</span>{' '}{t.required}
         </p>
       </div>
+      {submitError && (
+        <p className={`text-sm text-red-500 ${isRtl ? 'text-right leading-7' : 'leading-relaxed'}`}>
+          {submitError}
+        </p>
+      )}
 
     </form>
   );
