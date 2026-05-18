@@ -1,6 +1,7 @@
 import {
   collection,
   getDocs,
+  getDoc,
   doc,
   updateDoc,
   orderBy,
@@ -40,6 +41,16 @@ export async function getAllRequests(): Promise<AdminServiceRequest[]> {
     ...(d.data() as Omit<AdminServiceRequest, 'id'>),
     submittedAt: d.data().submittedAt ?? null,
   }));
+}
+
+export async function getRequestById(id: string): Promise<AdminServiceRequest | null> {
+  const snap = await getDoc(doc(db, 'serviceRequests', id));
+  if (!snap.exists()) return null;
+  return {
+    id: snap.id,
+    ...(snap.data() as Omit<AdminServiceRequest, 'id'>),
+    submittedAt: snap.data().submittedAt ?? null,
+  };
 }
 
 export async function updateRequestStatus(id: string, status: RequestStatus): Promise<void> {
